@@ -1,38 +1,15 @@
-import useCount from './hooks/useCount'
-import './App.css'
+import { useReducer } from "react";
 
-//const MiComponente = ({miProp}) => {
-  //return (
-   // <div>
-     // nombre: {miProp}
-    //</div> 
-  //)
-//}
-
-
-//function App() {
-  //return (
-    //<MiComponente miProp={"mi nombre"} />
-  //)
-//}
-
-
-
-
-
-const App = () => {
-
-  const {count, incrementar} = useCount(0)
-  return (
-    <div>
-      contador: {count}
-      <button onClick={incrementar}>incrementar</button>
-    </div>
-  )
+// const state = {count: 0}
+// action = {type: "incrementar"} || {type: "decrementar"} || {type: "reset"} || {type: "cualquier cosa"}
+// const reducer = (state, action) => { action siempre debe tener una accion de tipo string}
+const reducer = (state, action) => {
+  switch (action.type) {
+    case "incrementar":
+      return { count: state.count + 1 };
+    case "decrementar":
+      return { count: state.count - 1 };
+    default:
+      return state;
+  }
 }
-
-
-
-
-
-export default App
