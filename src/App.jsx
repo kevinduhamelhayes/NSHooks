@@ -1,20 +1,26 @@
 import "./App.css"
-const submit = (e) => {
-  e.preventDefault()
-  console.log(e.target.campo.value)
-  console.log(e.target.campo2.value)
-}
+import { useRef } from "react"
 
 const App = () => {
+  const input = useRef()
+  const file = useRef()
+
+  const SubmitEvent = () => {
+    console.log(input.current.value) // Corrected this line
+    console.log(file.current.files[0].name)
+    const form = new FormData()
+    form.append("campo", input.current.value)
+  }
+
   return (
-    <form onSubmit={submit} action="/lala" method="POST">
+    <div>
       <div>
         <span>lala</span>
-        <input type="text" name="campo" />
+        <input type="text" name="campo" ref={input} />
+        <input type="file"  ref={file} />
       </div>
-      <input type="text" name="campo2" />
-      <input type="submit" value="enviar" />
-    </form>
+      <input type="submit" value="enviar" onClick={SubmitEvent} />
+    </div>
   )
 }
 
