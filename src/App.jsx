@@ -1,25 +1,23 @@
 import "./App.css"
-import { useRef } from "react"
+import { useState } from "react"
 
 const App = () => {
-  const input = useRef()
-  const file = useRef()
-
-  const SubmitEvent = () => {
-    console.log(input.current.value) // Corrected this line
-    console.log(file.current.files[0].name)
-    const form = new FormData()
-    form.append("campo", input.current.value)
+  const [value, setValue] = useState("")
+  const handleChange = (e) => {
+    setValue(e.target.value)
   }
+  console.log(value)
 
   return (
     <div>
-      <div>
-        <span>lala</span>
-        <input type="text" name="campo" ref={input} />
-        <input type="file"  ref={file} />
-      </div>
-      <input type="submit" value="enviar" onClick={SubmitEvent} />
+      {value.length > 5 ? <p>El valor es mayor a 5</p> : null}
+      <input
+        type="text"
+        name="normal"
+        id=""
+        value={value}
+        onChange={handleChange}
+      />
     </div>
   )
 }
